@@ -97,23 +97,20 @@ if (isset($_POST['buscar'])) {
         <h5 class="modal-title w-100" id="exampleModalLabel">Nueva película</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-            <div class="modal-body">
-              <form action="agregarPelicula.php" method="post">
-              <div class="mb-3">
-          <label for="idGenero" class="form-label">Género:</label>
-          <select class="form-control" name="idGenero">
-              <?php
-              $sqlGenero = "SELECT * FROM genero";
-              $resultGenero = mysqli_query($conexion, $sqlGenero);
-
-              while ($rowGenero = mysqli_fetch_assoc($resultGenero)) {
-                  $selected = ($rowGenero['idGenero'] == $detallesPelicula['idGenero']) ? "selected" : "";
-                  echo "<option value='{$rowGenero['idGenero']}' $selected>{$rowGenero['genero']}</option>";
-              }
-              ?>
-          </select>
-      </div>
-
+      <div class="modal-body">
+        <form action="agregarPelicula.php" method="post">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input class="form-control" type="text" name="titulo" required>
+          </div>
+          <div class="mb-3">
+            <label for="protagonista" class="form-label">Protagonista</label>
+            <input class="form-control" type="text" name="protagonista" required>
+          </div>
+          <div class="mb-3">
+            <label for="horario" class="form-label">Horario</label>
+            <input class="form-control" type="text" name="horario" required>
+          </div>
           <div class="mb-3">
             <label for="genero" class="form-label">Género</label>
             <select name="genero" class="form-control" required>
@@ -142,6 +139,5 @@ if (isset($_POST['buscar'])) {
     </div>
   </div>
 </div>
-
 
 <?php include "lib/footer.php"; ?>
