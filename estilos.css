@@ -7,12 +7,18 @@ body {
 
 .peliculas-container {
     padding-top: 10px; /* Espaciado en la parte superior del contenedor */
+    margin-top: 50px;
     
 }
  .tituloPeliculas{
     font-family: 'Times New Roman', Times, serif;
     font-weight: 100,
     
+}
+
+/*Modal*/
+.modal-title{
+    text-align: center;
 }
 
 /*Titulos*/
@@ -67,6 +73,12 @@ border-radius: 20px;
 /*Tablas */
 .accionesTabla {
     text-align: center;
+    word-wrap: break-word; 
+}
+
+.table {
+    table-layout: fixed; /* Fuerza la tabla a tener un ancho fijo */
+    width: 100%; /* Hace que la tabla ocupe el 100% del ancho disponible */
 }
 
 .accionesTabla a {
@@ -81,6 +93,8 @@ th[scope="col"] {
 
 .infoPelicula{
     text-align: center;
+    word-wrap: break-word;
+    
 }
 
 .infoPelicula a{
@@ -119,7 +133,7 @@ border-radius: 10px;
 
 /* Estilos para la tabla */
 .table {
-    background-color: #ffffff; /* Fondo de la tabla */
+    background-color: #724545; /* Fondo de la tabla */
 }
 
 /* Modal */

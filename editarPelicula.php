@@ -1,11 +1,17 @@
 <?php
 include "lib/conexion.php";
 
+$detallesPelicula = null;
+
 if (isset($_GET['id'])) {
     $idPelicula = intval($_GET['id']); // Aseguramos que sea un entero
 
     // Realiza una consulta para obtener los detalles de la película con el ID especificado
-    $sql = "SELECT * FROM pelicula WHERE idPelicula = ?";
+    $sql = "SELECT pelicula.*, genero.genero, clasificacion.clasificacion
+            FROM pelicula
+            JOIN genero ON pelicula.idGenero = genero.idGenero
+            JOIN clasificacion ON pelicula.idClasificacion = clasificacion.idClasificacion
+            WHERE pelicula.idPelicula = ?";
     $stmt = mysqli_prepare($conexion, $sql);
     mysqli_stmt_bind_param($stmt, "i", $idPelicula);
     mysqli_stmt_execute($stmt);
@@ -41,7 +47,6 @@ if (isset($_GET['id'])) {
             margin-top: 5%;
             display: flex;
             justify-content: center;
-            
         }
 
         .card {
@@ -51,8 +56,7 @@ if (isset($_GET['id'])) {
             padding: 20px;
             width: 400px;
             height: 500px;
-            background-color: #9ECEEC
-            
+            background-color: #9ECEEC;
         }
 
         h1 {
@@ -73,7 +77,6 @@ if (isset($_GET['id'])) {
             border: 1px solid #ccc;
             box-sizing: border-box;
             border-radius: 4px;
-            
         }
 
         .d-grid {
@@ -111,7 +114,31 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="idGenero" class="form-label">Género:</label>
-                                    <input type="text" class="form-control" name="idGenero" value="<?= htmlspecialchars($detallesPelicula['idGenero']); ?>">
+                                    <select class="form-control" name="idGenero">
+                                        <?php
+                                        $sqlGenero = "SELECT * FROM genero";
+                                        $resultGenero = mysqli_query($conexion, $sqlGenero);
+
+                                        while ($rowGenero = mysqli_fetch_assoc($resultGenero)) {
+                                            $selected = ($rowGenero['idGenero'] == $detallesPelicula['idGenero']) ? "selected" : "";
+                                            echo "<option value='{$rowGenero['idGenero']}' $selected>{$rowGenero['genero']}</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idClasificacion" class="form-label">Clasificación:</label>
+                                    <select class="form-control" name="idClasificacion">
+                                        <?php
+                                        $sqlClasificacion = "SELECT * FROM clasificacion";
+                                        $resultClasificacion = mysqli_query($conexion, $sqlClasificacion);
+
+                                        while ($rowClasificacion = mysqli_fetch_assoc($resultClasificacion)) {
+                                            $selected = ($rowClasificacion['idClasificacion'] == $detallesPelicula['idClasificacion']) ? "selected" : "";
+                                            echo "<option value='{$rowClasificacion['idClasificacion']}' $selected>{$rowClasificacion['clasificacion']}</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="horario" class="form-label">Horario:</label>
@@ -122,6 +149,7 @@ if (isset($_GET['id'])) {
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                 </div>
                             </form>
+
                         <?php } else { ?>
                             <p class="card-text text-center">La película no existe o no se encontraron detalles.</p>
                         <?php } ?>

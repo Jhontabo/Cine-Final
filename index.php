@@ -48,47 +48,47 @@ if (isset($_POST['buscar'])) {
     <h6><a href="" class="btn btn-agregar" data-bs-toggle="modal" 
     data-bs-target="#exampleModal">Nueva película</a></h6>
     </div>
-
-<!-- Tabla de películas -->
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-body tabla-peliculas mx-auto">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Título</th>
-                            <th scope="col">Protagonista</th>
-                            <th scope="col"><i class="fas fa-film"></i>Género</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql = "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%'";
-                        $consulta = mysqli_query($conexion, $sql);
-                        while ($row = mysqli_fetch_array($consulta)) { ?>
-                            <tr class="infoPelicula">
-                                <th scope="row"><?= $row['idPelicula']; ?></th>
-                                <td><?= $row['titulo']; ?></td>
-                                <td><?= $row['protagonista']; ?></td>
-                                <td><?= $row['idGenero']; ?></td>
-                                <td class="accionesTabla">
-                                    <a href="verPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-info">Ver</a>
-                                    <a href="editarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-primary">Editar</a>
-                                    <a href="borrarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-danger">Borrar</a>
-                                </td>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-body tabla-peliculas mx-auto">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Protagonista</th>
+                                <th scope="col">Género</th>
+                                <th scope="col">Acciones</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sql = "SELECT pelicula.*, genero.genero 
+                                    FROM pelicula 
+                                    JOIN genero ON pelicula.idGenero = genero.idGenero 
+                                    WHERE pelicula.titulo LIKE '%$titulo%'";
+                            $consulta = mysqli_query($conexion, $sql);
+                            while ($row = mysqli_fetch_array($consulta)) {
+                            ?>
+                                <tr class="infoPelicula">
+                                    <th scope="row"><?= $row['idPelicula']; ?></th>
+                                    <td><?= $row['titulo']; ?></td>
+                                    <td><?= $row['protagonista']; ?></td>
+                                    <td><?= $row['genero']; ?></td>
+                                    <td class="accionesTabla">
+                                        <a href="verPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-info">Ver</a>
+                                        <a href="editarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-primary">Editar</a>
+                                        <a href="borrarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-danger">Borrar</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
 <!-- Modal mejorado -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -97,20 +97,23 @@ if (isset($_POST['buscar'])) {
         <h5 class="modal-title w-100" id="exampleModalLabel">Nueva película</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form action="agregarPelicula.php" method="post">
-          <div class="mb-3">
-            <label for="titulo" class="form-label">Título</label>
-            <input class="form-control" type="text" name="titulo" required>
-          </div>
-          <div class="mb-3">
-            <label for="protagonista" class="form-label">Protagonista</label>
-            <input class="form-control" type="text" name="protagonista" required>
-          </div>
-          <div class="mb-3">
-            <label for="horario" class="form-label">Horario</label>
-            <input class="form-control" type="text" name="horario" required>
-          </div>
+            <div class="modal-body">
+              <form action="agregarPelicula.php" method="post">
+              <div class="mb-3">
+          <label for="idGenero" class="form-label">Género:</label>
+          <select class="form-control" name="idGenero">
+              <?php
+              $sqlGenero = "SELECT * FROM genero";
+              $resultGenero = mysqli_query($conexion, $sqlGenero);
+
+              while ($rowGenero = mysqli_fetch_assoc($resultGenero)) {
+                  $selected = ($rowGenero['idGenero'] == $detallesPelicula['idGenero']) ? "selected" : "";
+                  echo "<option value='{$rowGenero['idGenero']}' $selected>{$rowGenero['genero']}</option>";
+              }
+              ?>
+          </select>
+      </div>
+
           <div class="mb-3">
             <label for="genero" class="form-label">Género</label>
             <select name="genero" class="form-control" required>
