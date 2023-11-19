@@ -16,22 +16,33 @@ if (isset($_POST['buscar'])) {
         </div>
     </div>
 
-<!-- Formulario de búsqueda mejorado -->
-<div class="row">
-    <div class="col-md-12">
-        <div class="card card-body buscador-peliculas">
-            <form action="index.php" method="post" class="form-inline">
-                <div class="input-group">
-                    <input type="text" name="titulo" id="titulo" onkeypress="buscarPeliculas()" class="form-control input-busqueda" placeholder="Buscar película ...">
-                    <button type="submit" name="buscar" class="btn btn-primary btn-buscar">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
- </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cartelera</a>
+            </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="#">Proximo</a>
+            </li>
+            
+          </ul>
+          <form class="d-flex" action="index.php" method="post" role="search">
+            <input type="text" name="titulo" id="titulo" onkeypress="buscarPeliculas()" class="form-control input-busqueda" placeholder="Buscar película ...">
+            <button type="submit" name="buscar" class="btn btn-primary btn-buscar"><i class="fas fa-search"></i> Buscar
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
     <div class="btnNuevaP">
     <h6><a href="" class="btn btn-agregar" data-bs-toggle="modal" 
@@ -58,12 +69,12 @@ if (isset($_POST['buscar'])) {
                         $sql = "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%'";
                         $consulta = mysqli_query($conexion, $sql);
                         while ($row = mysqli_fetch_array($consulta)) { ?>
-                            <tr>
+                            <tr class="infoPelicula">
                                 <th scope="row"><?= $row['idPelicula']; ?></th>
                                 <td><?= $row['titulo']; ?></td>
                                 <td><?= $row['protagonista']; ?></td>
                                 <td><?= $row['idGenero']; ?></td>
-                                <td>
+                                <td class="accionesTabla">
                                     <a href="verPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-info">Ver</a>
                                     <a href="editarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-primary">Editar</a>
                                     <a href="borrarPelicula.php?id=<?= $row['idPelicula']; ?>" class="btn btn-danger">Borrar</a>

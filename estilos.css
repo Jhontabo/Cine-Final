@@ -2,11 +2,12 @@
 
 /* Estilos generales */
 body {
-    background-color: #b6cce1 ; /* Fondo del cuerpo del documento */
+    background-color: #ffffff ; /* Fondo del cuerpo del documento */
 }
 
 .peliculas-container {
-    padding-top: 40px; /* Espaciado en la parte superior del contenedor */
+    padding-top: 10px; /* Espaciado en la parte superior del contenedor */
+    
 }
  .tituloPeliculas{
     font-family: 'Times New Roman', Times, serif;
@@ -43,8 +44,54 @@ h6{
     color: rgb(255, 255, 255);
     border-radius: 3px solid black;
     background-color: #0056b3;
+    margin-top: 15px;
 }
 
+/*Contenedores*/
+
+.peliculas-container{
+    padding-top: 10px;
+    background-color: lightsteelblue;
+
+}
+
+.card-body, .tabla-peliculas{
+padding: 10px;
+border-radius: 20px;
+}
+
+.container-fluid{
+    width: 100%;
+}
+
+/*Tablas */
+.accionesTabla {
+    text-align: center;
+}
+
+.accionesTabla a {
+    margin: 0 5px; /* Ajusta el margen entre los botones según tu preferencia */
+}
+
+th[scope="col"] {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.infoPelicula{
+    text-align: center;
+}
+
+.infoPelicula a{
+    margin:0 5px;
+}
+
+
+.bg-body-tertiary {
+
+border-radius: 10px;
+}
 .buscador-peliculas
 
 .modal-body,
