@@ -31,11 +31,15 @@ h6{
 
 /*Botones */
 
+/*Este es el boton de close o de cerrar del modal*/
 .btn.btn-secondary{
 
     background-color: red;
     text-align: left;
 
+}
+.btn.btn-agregar {
+    color: rgb(255, 255, 255) !important;
 }
 
 .buscador-peliculas{
