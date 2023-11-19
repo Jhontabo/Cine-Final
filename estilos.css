@@ -1,0 +1,68 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    background-color: #a2b3c4; /* Fondo del cuerpo del documento */
+}
+
+.peliculas-container {
+    padding-top: 40px; /* Espaciado en la parte superior del contenedor */
+}
+ .tituloPeliculas{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100,
+    
+}
+
+h1{
+    color: aliceblue;   
+}
+
+h6{
+    
+    color: #ffffff;
+}
+
+.buscador-peliculas{
+    text-align: right;
+}
+.modal-body,
+.card-body,
+.tabla-peliculas,
+.modal-footer {
+    background-color: #ffffff; /* Fondo de diferentes secciones */
+    margin-bottom: 15px; /* Margen inferior de las secciones */
+}
+
+.btn-agregar {
+    background-color: #007bff; /* Color de fondo del botón agregar (azul) */
+    border-color: #007bff; /* Color del borde del botón agregar */
+}
+
+.btn-agregar:hover {
+    background-color: #0056b3; /* Color de fondo del botón agregar al pasar el ratón */
+    border-color: #0056b3; /* Color del borde del botón agregar al pasar el ratón */
+}
+
+.input-busqueda,
+.btn-buscar {
+    margin-right: 10px; /* Margen derecho del campo de búsqueda y del botón buscar */
+}
+
+/* Estilos para la tabla */
+.table {
+    background-color: #ffffff; /* Fondo de la tabla */
+}
+
+/* Modal */
+.modal-title {
+    font-size: 1.5rem; /* Tamaño de la fuente del título del modal */
+}
+
+.modal-body {
+    background-color: #ffffff; /* Fondo del cuerpo del modal */
+}
+
+.modal-footer {
+    background-color: #ffffff; /* Fondo del pie del modal */
+}

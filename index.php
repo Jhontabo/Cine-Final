@@ -8,19 +8,36 @@ if (isset($_POST['buscar'])) {
 <?php include "lib/header.php"; ?>
 <?php include "lib/conexion.php"; ?>
 
-<div class="container p-12">
+<div class="container peliculas-container">
+    <!-- Encabezado -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="tituloPeliculas">Gestion salas de cine</h1>
+        </div>
+    </div>
+
+    <!-- Formulario de búsqueda -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
-                <h6><a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Nueva Película</a></h6>
+            <div class="card card-body buscador-peliculas">
                 <form action="index.php" method="post">
-                    <input type="text" name="titulo" id="titulo" onkeypress="buscarPeliculas()">
-                    <input type="submit" value="Buscar" name="buscar">
+                    <input type="text" name="titulo" id="titulo" onkeypress="buscarPeliculas()" class="input-busqueda">
+                    <input type="submit" value="Buscar" name="buscar" class="btn btn-buscar">
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="btnNuevaP">
+    <h6><a href="" class="btn btn-agregar" data-bs-toggle="modal" 
+    data-bs-target="#exampleModal">Nueva película</a></h6>
+    </div>
+    
+
+    <!-- Tabla de películas -->
+    <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
+            <div class="card card-body tabla-peliculas">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -54,7 +71,6 @@ if (isset($_POST['buscar'])) {
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
