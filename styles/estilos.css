@@ -2,7 +2,7 @@
 
 /* Estilos generales */
 body {
-    background-color: #a67d7d; /* Fondo del cuerpo del documento */
+    background-color: #c5d9ec ; /* Fondo del cuerpo del documento */
 }
 
 .peliculas-container {
@@ -45,9 +45,8 @@ h6{
     background-color: #0056b3;
 }
 
-.buscador-peliculas{
-    
-}
+.buscador-peliculas
+
 .modal-body,
 .card-body,
 .tabla-peliculas,

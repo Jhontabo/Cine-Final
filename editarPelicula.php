@@ -39,6 +39,9 @@ if (isset($_GET['id'])) {
 
         .container {
             margin-top: 5%;
+            display: flex;
+            justify-content: center;
+            
         }
 
         .card {
@@ -46,6 +49,10 @@ if (isset($_GET['id'])) {
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            width: 400px;
+            height: 500px;
+            background-color: #9ECEEC
+            
         }
 
         h1 {
@@ -66,6 +73,7 @@ if (isset($_GET['id'])) {
             border: 1px solid #ccc;
             box-sizing: border-box;
             border-radius: 4px;
+            
         }
 
         .d-grid {
