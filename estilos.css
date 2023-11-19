@@ -2,7 +2,7 @@
 
 /* Estilos generales */
 body {
-    background-color: #a2b3c4; /* Fondo del cuerpo del documento */
+    background-color: #ffffff; /* Fondo del cuerpo del documento */
 }
 
 .peliculas-container {
@@ -14,8 +14,14 @@ body {
     
 }
 
+/*Titulos*/
+
+.modal-content h5 .modal-title{
+    text-align: center;
+}
+
 h1{
-    color: aliceblue;   
+    color: rgb(0, 0, 0);   
 }
 
 h6{
@@ -23,8 +29,17 @@ h6{
     color: #ffffff;
 }
 
+/*Botones */
+
+.btn.btn-secondary{
+
+    background-color: red;
+    text-align: left;
+
+}
+
 .buscador-peliculas{
-    text-align: right;
+    
 }
 .modal-body,
 .card-body,
