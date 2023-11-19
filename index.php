@@ -79,59 +79,55 @@ if (isset($_POST['buscar'])) {
 
 
 <!-- Modal mejorado -->
-<!-- Modal mejorado -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title w-100" id="exampleModalLabel">Nueva película</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="agregarPelicula.php" method="post">
-                    <div class="mb-3">
-                        <label for="titulo" class="form-label">Título</label>
-                        <input class="form-control" type="text" name="titulo" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="protagonista" class="form-label">Protagonista</label>
-                        <input class="form-control" type="text" name="protagonista" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="horario" class="form-label">Horario</label>
-                        <input class="form-control" type="text" name="horario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="genero" class="form-label">Género</label>
-                        <select name="genero" class="form-control" required>
-                            <option value="1">Acción</option>
-                            <option value="2">Terror</option>
-                            <option value="3">Ciencia Ficción</option>
-                            <option value="4">Drama</option>
-                            <option value="5">Romance</option>
-                            <option value="6">Comedia</option>
-                            <option value="7">Infantil</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="clasificacion" class="form-label">Clasificación</label>
-                        <select name="clasificacion" class="form-control" required>
-                            <option value="1">Para todo público</option>
-                            <option value="2">Mayores de 13 años</option>
-                            <option value="3">Mayores de 18 años</option>
-                            <option value="4">Menores de 13 años</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-primary" name="agregar" type="submit">Agregar Película</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title w-100" id="exampleModalLabel">Nueva película</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="agregarPelicula.php" method="post">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input class="form-control" type="text" name="titulo" required>
+          </div>
+          <div class="mb-3">
+            <label for="protagonista" class="form-label">Protagonista</label>
+            <input class="form-control" type="text" name="protagonista" required>
+          </div>
+          <div class="mb-3">
+            <label for="horario" class="form-label">Horario</label>
+            <input class="form-control" type="text" name="horario" required>
+          </div>
+          <div class="mb-3">
+            <label for="genero" class="form-label">Género</label>
+            <select name="genero" class="form-control" required>
+              <option value="1">Acción</option>
+              <option value="2">Terror</option>
+              <option value="3">Ciencia Ficción</option>
+              <option value="4">Drama</option>
+              <option value="5">Romance</option>
+              <option value="6">Comedia</option>
+              <option value="7">Infantil</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="clasificacion" class="form-label">Clasificación</label>
+            <select name="clasificacion" class="form-control" required>
+              <option value="1">Para todo público</option>
+              <option value="2">Mayores de 13 años</option>
+              <option value="3">Mayores de 18 años</option>
+              <option value="4">Menores de 13 años</option>
+            </select>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-primary" name="agregar" type="submit">Agregar Película</button>
+      </div>
     </div>
+  </div>
 </div>
-
 
 
 <?php include "lib/footer.php"; ?>

@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<?php include "lib/header.php"; ?>
+
 
 <div class="container p-12">
     <div class="row">
@@ -46,4 +46,3 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-<?php include "lib/footer.php"; ?>

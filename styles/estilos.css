@@ -2,7 +2,7 @@
 
 /* Estilos generales */
 body {
-    background-color: #ffffff; /* Fondo del cuerpo del documento */
+    background-color: #a67d7d; /* Fondo del cuerpo del documento */
 }
 
 .peliculas-container {
@@ -27,6 +27,7 @@ h1{
 h6{
     
     color: #ffffff;
+    
 }
 
 /*Botones */
@@ -39,7 +40,9 @@ h6{
 
 }
 .btn.btn-agregar {
-    color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255);
+    border-radius: 3px solid black;
+    background-color: #0056b3;
 }
 
 .buscador-peliculas{

@@ -25,44 +25,102 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<?php include "lib/header.php"; ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Película</title>
 
-<div class="container p-12">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-body">
-                <h1>Editar Película</h1>
-                <?php if (isset($detallesPelicula)) { ?>
-                    <!-- Formulario para editar los detalles de la película -->
-                    <form action="guardarEdicion.php" method="post">
-                        <input type="hidden" name="idPelicula" value="<?= htmlspecialchars($detallesPelicula['idPelicula']); ?>">
-                        <div class="form-group">
-                            <label for="titulo">Título:</label>
-                            <input type="text" class="form-control" name="titulo" value="<?= htmlspecialchars($detallesPelicula['titulo']); ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="protagonista">Protagonista:</label>
-                            <input type="text" class="form-control" name="protagonista" value="<?= htmlspecialchars($detallesPelicula['protagonista']); ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="idGenero">Género:</label>
-                            <input type="text" class="form-control" name="idGenero" value="<?= htmlspecialchars($detallesPelicula['idGenero']); ?>">
-                        </div>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
 
-                        <div class="form-group">
-                            <label for="horario">Horario:</label>
-                            <input type="text" class="form-control" name="horario" value="<?= htmlspecialchars($detallesPelicula['horario']); ?>">
-                        </div>
-                        
-                        <!-- Agrega más campos de edición según sea necesario -->
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </form>
-                <?php } else { ?>
-                    <p>La película no existe o no se encontraron detalles.</p>
-                <?php } ?>
+        .container {
+            margin-top: 5%;
+        }
+
+        .card {
+            border: 1px solid #345565;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .d-grid {
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">Editar Película</h1>
+                        <?php if (isset($detallesPelicula)) { ?>
+                            <!-- Formulario para editar los detalles de la película -->
+                            <form action="guardarEdicion.php" method="post">
+                                <input type="hidden" name="idPelicula" value="<?= htmlspecialchars($detallesPelicula['idPelicula']); ?>">
+                                <div class="mb-3">
+                                    <label for="titulo" class="form-label">Título:</label>
+                                    <input type="text" class="form-control" name="titulo" value="<?= htmlspecialchars($detallesPelicula['titulo']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="protagonista" class="form-label">Protagonista:</label>
+                                    <input type="text" class="form-control" name="protagonista" value="<?= htmlspecialchars($detallesPelicula['protagonista']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idGenero" class="form-label">Género:</label>
+                                    <input type="text" class="form-control" name="idGenero" value="<?= htmlspecialchars($detallesPelicula['idGenero']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="horario" class="form-label">Horario:</label>
+                                    <input type="text" class="form-control" name="horario" value="<?= htmlspecialchars($detallesPelicula['horario']); ?>">
+                                </div>
+                                <!-- Agrega más campos de edición según sea necesario -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </div>
+                            </form>
+                        <?php } else { ?>
+                            <p class="card-text text-center">La película no existe o no se encontraron detalles.</p>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<?php include "lib/footer.php"; ?>
+</body>
+</html>
