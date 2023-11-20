@@ -5,28 +5,36 @@ if (isset($_POST['buscar'])) {
 }
 
 if (isset($_POST['agregar'])) {
-  $titulo = $_POST['titulo'];
-  $protagonista = $_POST['protagonista'];
-  $horario = $_POST['horario'];
-  $genero = $_POST['genero'];
-  $clasificacion = $_POST['clasificacion'];
-  $imagen_url = $_POST['imagen_url'];
+    $titulo = $_POST['titulo'];
+    $protagonista = $_POST['protagonista'];
+    $horario = $_POST['horario'];
+    $genero = $_POST['genero'];
+    $clasificacion = $_POST['clasificacion'];
+    $imagen_url = $_POST['imagen_url'];
 
-  // Realiza la inserción en la base de datos
-  $sql = "INSERT INTO pelicula (titulo, protagonista, horario, idGenero, idClasificacion, imagen_url) 
-          VALUES ('$titulo', '$protagonista', '$horario', $genero, $clasificacion, '$imagen_url')";
-          
-  $result = mysqli_query($conexion, $sql);
+    // Realiza la inserción en la base de datos
+    $sql = "INSERT INTO pelicula (titulo, protagonista, horario, idGenero, idClasificacion, imagen_url) 
+            VALUES ('$titulo', '$protagonista', '$horario', $genero, $clasificacion, '$imagen_url')";
+            
+    $result = mysqli_query($conexion, $sql);
 
-  if ($result) {
-      echo "Película agregada correctamente.";
-  } else {
-      echo "Error al agregar la película: " . mysqli_error($conexion);
-  }
+    if ($result) {
+        // Película agregada correctamente
+        echo "<script>
+            mostrarNotificacion('Película eliminada correctamente', 'exito');
+            setTimeout(() => {
+                location.href = 'index.php'; // Redirigir a la página principal después de la alerta
+            }, 3000); // Redirigir después de 3 segundos
+          </script>";
+
+       
+      
+      } else {
+        // Error al agregar la película
+        echo "Error al agregar la película: " . mysqli_error($conexion);
+    }
 }
-
 ?>
-
 <?php include "lib/header.php"; ?>
 <?php include "lib/conexion.php"; ?>
 
@@ -54,6 +62,7 @@ if (isset($_POST['agregar'])) {
         </div>
       </div>
     </nav>
+
 
     <div class="btnNuevaP">
     <h6><a href="" class="btn btn-agregar" data-bs-toggle="modal" 

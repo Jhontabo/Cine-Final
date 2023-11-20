@@ -5,6 +5,7 @@ include "lib/conexion.php";
 if (!$conexion) {
     die("Error en la conexión: " . mysqli_connect_error());
 }
+include "lib/footer.php";
 
 // Condición para validar la existencia de la variable 'agregar'
 if (isset($_POST['agregar'])) {
@@ -26,6 +27,14 @@ if (isset($_POST['agregar'])) {
     if (!$consulta) {
         die("Error al ejecutar la consulta: " . mysqli_error($conexion));
     }
+
+    // Mostrar mensaje en la consola del navegador
+    echo "<script>
+            mostrarNotificacion('Película eliminada correctamente', 'exito');
+            setTimeout(() => {
+                location.href = 'index.php'; // Redirigir a la página principal después de la alerta
+            }, 3000); // Redirigir después de 3 segundos
+          </script>";
 
     // Redirigir a la página principal después de agregar la película
     header('Location: index.php');
