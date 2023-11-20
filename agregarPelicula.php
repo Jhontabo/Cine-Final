@@ -28,15 +28,11 @@ if (isset($_POST['agregar'])) {
         die("Error al ejecutar la consulta: " . mysqli_error($conexion));
     }
 
-    // Mostrar mensaje en la consola del navegador
-    echo "<script>
-            mostrarNotificacion('Película eliminada correctamente', 'exito');
-            setTimeout(() => {
-                location.href = 'index.php'; // Redirigir a la página principal después de la alerta
-            }, 3000); // Redirigir después de 3 segundos
-          </script>";
-
-    // Redirigir a la página principal después de agregar la película
-    header('Location: index.php');
+    // Mostrar mensaje de alerta en JavaScript con tres emojis diferentes
+    echo '<script>
+            alert("¡Película agregada correctamente! 🎬✨👏");
+            window.location.href = "index.php"; // Redirigir a la página principal después de la alerta y agregado
+          </script>';
+    exit(); // Asegúrate de salir para evitar que se ejecute el resto del código PHP
 }
 ?>
