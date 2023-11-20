@@ -3,6 +3,28 @@ $titulo = "";
 if (isset($_POST['buscar'])) {
     $titulo = $_POST['titulo'];
 }
+
+if (isset($_POST['agregar'])) {
+  $titulo = $_POST['titulo'];
+  $protagonista = $_POST['protagonista'];
+  $horario = $_POST['horario'];
+  $genero = $_POST['genero'];
+  $clasificacion = $_POST['clasificacion'];
+  $imagen_url = $_POST['imagen_url'];
+
+  // Realiza la inserción en la base de datos
+  $sql = "INSERT INTO pelicula (titulo, protagonista, horario, idGenero, idClasificacion, imagen_url) 
+          VALUES ('$titulo', '$protagonista', '$horario', $genero, $clasificacion, '$imagen_url')";
+          
+  $result = mysqli_query($conexion, $sql);
+
+  if ($result) {
+      echo "Película agregada correctamente.";
+  } else {
+      echo "Error al agregar la película: " . mysqli_error($conexion);
+  }
+}
+
 ?>
 
 <?php include "lib/header.php"; ?>
@@ -90,6 +112,7 @@ if (isset($_POST['buscar'])) {
         </div>
     </div>
 <!-- Modal mejorado -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -114,6 +137,7 @@ if (isset($_POST['buscar'])) {
           <div class="mb-3">
             <label for="genero" class="form-label">Género</label>
             <select name="genero" class="form-control" required>
+              <!-- opciones del genero -->
               <option value="1">Acción</option>
               <option value="2">Terror</option>
               <option value="3">Ciencia Ficción</option>
@@ -121,20 +145,28 @@ if (isset($_POST['buscar'])) {
               <option value="5">Romance</option>
               <option value="6">Comedia</option>
               <option value="7">Infantil</option>
+
             </select>
           </div>
           <div class="mb-3">
             <label for="clasificacion" class="form-label">Clasificación</label>
             <select name="clasificacion" class="form-control" required>
+              <!-- opciones de clasificación -->
               <option value="1">Para todo público</option>
               <option value="2">Mayores de 13 años</option>
               <option value="3">Mayores de 18 años</option>
               <option value="4">Menores de 13 años</option>
             </select>
           </div>
+          <div class="mb-3">
+            <label for="imagen_url" class="form-label">URL de la Imagen</label>
+            <input class="form-control" type="text" name="imagen_url" required>
+          </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <button class="btn btn-primary" name="agregar" type="submit">Agregar Película</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

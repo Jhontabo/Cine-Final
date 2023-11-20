@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 400px;
-            height: 500px;
+            height: 550px;
             background-color: #9ECEEC;
         }
 
@@ -113,6 +113,10 @@ if (isset($_GET['id'])) {
                                     <input type="text" class="form-control" name="protagonista" value="<?= htmlspecialchars($detallesPelicula['protagonista']); ?>">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="imagen_url" class="form-label">URL de la imagen:</label>
+                                    <input type="text" class="form-control" name="imagen_url" value="<?= htmlspecialchars($detallesPelicula['imagen_url']); ?>">
+                                </div>
+                                <div class="mb-3">
                                     <label for="idGenero" class="form-label">Género:</label>
                                     <select class="form-control" name="idGenero">
                                         <?php
@@ -160,3 +164,4 @@ if (isset($_GET['id'])) {
     </div>
 </body>
 </html>
+
