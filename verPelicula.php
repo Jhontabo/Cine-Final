@@ -36,75 +36,87 @@ if (isset($_GET['id'])) {
     <title>Detalles de la Película</title>
 
     <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
 
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 500px;
-            margin: auto;
-            box-sizing: border-box;
-            height: auto;
-            position: relative;
-        }
+    body {
+    background-color: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    }
 
-        h1 {
-            color: #007bff;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
+    .card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    box-sizing: border-box;
+    height: auto;
+    position: relative;
+    }
+    
+    h1 {
+    color: #007bff;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center; /* Corregido: es 'text-align', no 'text-aling' */
+}
 
-        p {
-            font-size: 18px;
-            margin: 25px 0;
-        }
 
-        img {
-            max-width: 350px;
-            max-height: 320px;
-            width: auto;
-            height: auto;
-            display: block;
-            margin: auto;
-            border-radius: 10px;
-        }
+    p {
+    font-size: 18px;
+    margin: 25px 0;
+    }
 
-        .back-button {
-            display: block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    img {
+    max-width: 350px;
+    max-height: 320px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Ajusta el margen para centrar verticalmente y agregar espacio arriba y abajo */
+    border-radius: 10px;
+}
 
-        .back-button:hover {
-            background-color: #0056b3;
-        }
 
-        .container {
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
+.back-button {
+    display: block;
+    margin: 20px auto; /* Ajusta el margen para centrar vertical y horizontalmente */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    clear: both; /* Añade clear: both para evitar que el botón se una a la imagen */
+}
 
-        .back-button{
-            
-        }
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.center-text {
+    display: block;
+    text-align: center;
+    width: 50%;
+}
+
+
+
+      
     </style>
 </head>
 <body>
@@ -119,11 +131,11 @@ if (isset($_GET['id'])) {
                         <p><strong>Género:</strong> <?= $detallesPelicula['genero']; ?></p>
                         <p><strong>Clasificación:</strong> <?= $detallesPelicula['clasificacion']; ?></p>
                         <p><strong>Horario:</strong> <?= $detallesPelicula['horario']; ?></p>
-                        <img src="<?= $detallesPelicula['imagen_url']; ?>" alt="Imagen de la película">
-                    <?php } else { ?>
+                        <img src="<?= $detallesPelicula['imagen_url']; ?>" alt="Imagen de la película"><?php
+                    } else { ?>
                         <p>La película no existe o no se encontraron detalles.</p>
                     <?php } ?>
-                    <a href="index.php" class="back-button">Volver</a>
+                    <a href="index.php" class="back-button center-text">Volver</a>
                 </div>
             </div>
         </div>
