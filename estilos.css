@@ -8,6 +8,10 @@ body {
 .peliculas-container {
     padding-top: 10px; /* Espaciado en la parte superior del contenedor */
     margin-top: 50px;
+    padding-top: 10px;
+    background-color: lightsteelblue;
+    border-radius: 20px;
+
     
 }
  .tituloPeliculas{
