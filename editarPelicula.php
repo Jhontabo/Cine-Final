@@ -7,11 +7,11 @@ if (isset($_GET['id'])) {
     $idPelicula = intval($_GET['id']); // Aseguramos que sea un entero
 
     // Realiza una consulta para obtener los detalles de la película con el ID especificado
-    $sql = "SELECT pelicula.*, genero.genero, clasificacion.clasificacion
-            FROM pelicula
-            JOIN genero ON pelicula.idGenero = genero.idGenero
-            JOIN clasificacion ON pelicula.idClasificacion = clasificacion.idClasificacion
-            WHERE pelicula.idPelicula = ?";
+        $sql = "SELECT pelicula.*, genero.genero, clasificacion.clasificacion
+        FROM pelicula
+        JOIN genero ON pelicula.idGenero = genero.idGenero
+        JOIN clasificacion ON pelicula.idClasificacion = clasificacion.idClasificacion
+        WHERE pelicula.idPelicula = ?";
     $stmt = mysqli_prepare($conexion, $sql);
     mysqli_stmt_bind_param($stmt, "i", $idPelicula);
     mysqli_stmt_execute($stmt);
