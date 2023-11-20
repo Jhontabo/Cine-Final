@@ -1,0 +1,165 @@
+-- Crear la base de datos cine
+CREATE DATABASE IF NOT EXISTS cine;
+USE cine;
+
+-- Crear la tabla genero
+CREATE TABLE IF NOT EXISTS genero (
+    idGenero INT(10) PRIMARY KEY AUTO_INCREMENT,
+    genero VARCHAR(150)
+);
+
+-- Insertar datos en la tabla genero
+INSERT INTO genero (genero)
+VALUES
+    ('Acción'),
+    ('Terror'),
+    ('Sci-Fi'),
+    ('Drama'),
+    ('Romance'),
+    ('Comedia'),
+    ('Infantil');
+
+-- Crear la tabla clasificacion
+CREATE TABLE IF NOT EXISTS clasificacion (
+    idClasificacion INT(10) PRIMARY KEY AUTO_INCREMENT,
+    clasificacion VARCHAR(50)
+);
+
+-- Insertar datos en la tabla clasificacion
+INSERT INTO clasificacion (clasificacion)
+VALUES
+    ('Para todo público'),
+    ('Mayores de 13 años'),
+    ('Mayores de 18 años'),
+    ('Menores de 13 años');
+
+-- Crear la tabla cine
+CREATE TABLE IF NOT EXISTS cine (
+    idCine INT(10) PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255),
+    direccion VARCHAR(150),
+    telefono VARCHAR(50)
+);
+
+-- Insertar datos en la tabla cine
+INSERT INTO cine (nombre, direccion, telefono)
+VALUES
+    ('Cinema Valle de Atriz', 'CC Valle de Atriz', '7234567'),
+    ('Royal Films', 'Av Panamericana', '7233456'),
+    ('Royal Films', 'CC Unico', '7212334'),
+    ('Cinemark', 'CC. Unicentro', '7244576'),
+    ('Cine Colombia', 'Calle 18 No. 22-45', '7223456'),
+    ('col', 'Calle 18 No. 22-45', '7223456');
+
+-- Crear la tabla pelicula
+CREATE TABLE IF NOT EXISTS pelicula (
+    idPelicula INT(10) PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(150),
+    protagonista VARCHAR(150),
+    horario VARCHAR(50),
+    idGenero INT(10),
+    idClasificacion INT(10),
+    imagen_url VARCHAR(255),
+    FOREIGN KEY (idGenero) REFERENCES genero (idGenero),
+    FOREIGN KEY (idClasificacion) REFERENCES clasificacion (idClasificacion)
+);
+
+-- Insertar datos en la tabla pelicula
+INSERT INTO pelicula (titulo, protagonista, horario, idGenero, idClasificacion, imagen_url)
+VALUES
+    ('Rapidos y furiosos X', 'Vin Diesel', '3:00pm, 6:00pm, 9:00pm', 1, 2, 'https://depor.com/resizer/frYh9JMjTmkI_few0UyKK7WGvCU=/620x0/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/K3ZVO6CHINGL5OWBS45TZM4BRI.jpg'),
+    ('Avatar 2', 'Sam Worthintong', '3:00pm, 6:00pm, 9:00pm', 3, 2, 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202212/avatar_2_movie_review-sixteen_nine.jpg?VersionId=Qz2xqVfDHDuBDCcnQ2C_hcjwK9IhQCHc&size=690:388'),
+    ('Transformers', 'Michael Bay', '3:00pm, 6:00pm, 9:00pm', 3, 2, 'https://images.alphacoders.com/111/11.jpg');
+
+-- Crear la tabla cinePelicula
+CREATE TABLE IF NOT EXISTS cinePelicula (
+    idCine INT(10),
+    idPelicula INT(10),
+    FOREIGN KEY (idCine) REFERENCES cine (idCine),
+    FOREIGN KEY (idPelicula) REFERENCES pelicula (idPelicula)
+);
+
+-- Insertar datos en la tabla cinePelicula
+INSERT INTO cinePelicula (idCine, idPelicula)
+VALUES
+    (1, 1),
+    (1, 2),
+    (2, 1);
+    
+-- Crear la tabla tabla_alertas
+CREATE TABLE IF NOT EXISTS tabla_alertas (
+    idAlerta INT(10) PRIMARY KEY AUTO_INCREMENT,
+    mensaje VARCHAR(255)
+);
+
+-- Crear la vista de Detalles de Película
+CREATE VIEW DetallesPelicula AS
+SELECT 
+    p.idPelicula,
+    p.titulo,
+    p.protagonista,
+    p.horario,
+    g.genero,
+    c.clasificacion,
+    p.imagen_url
+FROM pelicula p
+JOIN genero g ON p.idGenero = g.idGenero
+JOIN clasificacion c ON p.idClasificacion = c.idClasificacion;
+
+-- Crear el procedimiento almacenado para Búsqueda Avanzada
+DELIMITER //
+CREATE PROCEDURE BusquedaAvanzada(
+    IN p_titulo VARCHAR(255),
+    IN p_genero INT,
+    IN p_clasificacion INT,
+    IN p_fecha_lanzamiento DATE
+)
+BEGIN
+    SELECT 
+        p.idPelicula,
+        p.titulo,
+        p.protagonista,
+        p.horario,
+        g.genero,
+        c.clasificacion,
+        p.imagen_url
+    FROM pelicula p
+    JOIN genero g ON p.idGenero = g.idGenero
+    JOIN clasificacion c ON p.idClasificacion = c.idClasificacion
+    WHERE p.titulo LIKE CONCAT('%', p_titulo, '%')
+    AND (p_genero IS NULL OR p.idGenero = p_genero)
+    AND (p_clasificacion IS NULL OR p.idClasificacion = p_clasificacion)
+    AND (p_fecha_lanzamiento IS NULL OR p.fecha_lanzamiento = p_fecha_lanzamiento);
+END;
+//
+DELIMITER ;
+
+-- Crear la vista de Detalles de Género
+CREATE VIEW DetallesGenero AS
+SELECT 
+    g.idGenero,
+    g.genero,
+    COUNT(p.idPelicula) as cantidad_peliculas
+FROM genero g
+LEFT JOIN pelicula p ON g.idGenero = p.idGenero
+GROUP BY g.idGenero, g.genero;
+
+-- Crear el trigger para Alerta de Cambios en Películas
+-- Cambiar el delimitador temporalmente
+DELIMITER //
+
+-- Crear el trigger para Alerta de Cambios en Películas
+CREATE TRIGGER AlertaCambioPelicula
+AFTER UPDATE ON pelicula
+FOR EACH ROW
+BEGIN
+    IF NEW.titulo != OLD.titulo OR NEW.genero != OLD.genero THEN
+        -- Puedes enviar una alerta aquí (ej. correo electrónico, registro en tabla de alertas, etc.)
+        -- Reemplaza el siguiente código con la acción que desees.
+        INSERT INTO tabla_alertas (mensaje) VALUES (CONCAT('Se realizaron cambios en la película: ', NEW.titulo));
+    END IF;
+END;
+
+-- Restaurar el delimitador
+DELIMITER ;
+
