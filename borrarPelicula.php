@@ -20,30 +20,11 @@ if (isset($_GET['id'])) {
         if ($resultado_pelicula) {
             // Éxito al eliminar la película y registros relacionados
 
-            echo "<script>
-                function mostrarNotificacion(mensaje, tipo) {
-                    const notificacion = document.createElement('div');
-                    notificacion.classList.add('notificacion', tipo);
-                    notificacion.textContent = mensaje;
-
-                    // Establecer estilos CSS para la notificación
-                    notificacion.style.position = 'fixed';
-                    notificacion.style.bottom = '10px'; // Ajusta según tu preferencia
-                    notificacion.style.right = '10px'; // Ajusta según tu preferencia
-
-                    document.body.appendChild(notificacion);
-
-                    setTimeout(() => {
-                        notificacion.remove();
-                        location.href = 'index.php'; // Redirigir a la página principal después de la alerta y eliminación
-                    }, 0); // Redirigir de inmediato
-                }
-
-                // Llama a la función de notificación al cargar la página
-                window.onload = function() {
-                    mostrarNotificacion('Película eliminada correctamente', 'exito');
-                }
-                </script>";
+            echo '<script>
+                alert("¡Película eliminada correctamente! 🎉");
+                window.location.href = "index.php"; // Redirigir a la página principal después de la alerta y eliminación
+            </script>';
+            exit(); // Asegúrate de salir para evitar que se ejecute el resto del código PHP
 
         } else {
             echo "Error al eliminar la película. Detalles del error: " . mysqli_error($conexion);

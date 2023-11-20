@@ -20,12 +20,6 @@ if (isset($_POST['agregar'])) {
 
     if ($result) {
         // Película agregada correctamente
-        echo "<script>
-            mostrarNotificacion('Película eliminada correctamente', 'exito');
-            setTimeout(() => {
-                location.href = 'index.php'; // Redirigir a la página principal después de la alerta
-            }, 3000); // Redirigir después de 3 segundos
-          </script>";
 
        
       
