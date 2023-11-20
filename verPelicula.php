@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
     color: #007bff;
     font-size: 28px;
     margin-bottom: 30px;
-    text-align: center; /* Corregido: es 'text-align', no 'text-aling' */
+    text-align: center; 
 }
 
 
@@ -79,14 +79,14 @@ if (isset($_GET['id'])) {
     width: auto;
     height: auto;
     display: block;
-    margin: 20px auto; /* Ajusta el margen para centrar verticalmente y agregar espacio arriba y abajo */
+    margin: 20px auto; 
     border-radius: 10px;
 }
 
 
 .back-button {
     display: block;
-    margin: 20px auto; /* Ajusta el margen para centrar vertical y horizontalmente */
+    margin: 20px auto; 
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
@@ -94,7 +94,7 @@ if (isset($_GET['id'])) {
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
-    clear: both; /* Añade clear: both para evitar que el botón se una a la imagen */
+    clear: both; 
 }
 
 
@@ -114,10 +114,8 @@ if (isset($_GET['id'])) {
     width: 50%;
 }
 
-
-
       
-    </style>
+</style>
 </head>
 <body>
     <div class="container">

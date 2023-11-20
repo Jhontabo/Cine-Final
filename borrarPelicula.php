@@ -53,5 +53,5 @@ if (isset($_GET['id'])) {
     echo "ID de película no proporcionado.";
 }
 
-$conexion->close(); // Cerrar la conexión a la base de datos al final del script
+$conexion->close(); 
 ?>
